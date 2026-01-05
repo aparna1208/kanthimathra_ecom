@@ -546,19 +546,79 @@ def create_razorpay_order(request):
 #     return JsonResponse({"order_id": order.id})
 
 
+# @csrf_exempt
+# @login_required
+# def payment_success(request):
+#     try:
+#         data = json.loads(request.body)
+#         payment_id = data.get("razorpay_payment_id")
+
+#         session_cart = request.session.get("cart", {})
+#         if not session_cart:
+#             return JsonResponse({"error": "Cart empty"}, status=400)
+
+#         subtotal = Decimal("0.00")
+
+#         order = Order.objects.create(
+#             user=request.user,
+#             payment_id=payment_id,
+#             payment_method="RAZORPAY",
+#             status="paid",
+#             total_amount=0
+#         )
+
+#         for product_id, item in session_cart.items():
+#             product = Product.objects.get(id=product_id)
+#             price = Decimal(item["price"])
+#             qty = item["qty"]
+
+#             subtotal += price * qty
+
+#             OrderItem.objects.create(
+#                 order=order,
+#                 product=product,
+#                 quantity=qty,
+#                 price=price
+#             )
+
+#         order.total_amount = subtotal
+#         order.save()
+
+#         # Clear cart
+#         request.session["cart"] = {}
+#         request.session.modified = True
+
+#         send_invoice_email(order)
+
+#         return JsonResponse({"order_id": order.id})
+
+#     except Exception as e:
+#         return JsonResponse({"error": str(e)}, status=500)
+
+from django.views.decorators.csrf import csrf_exempt
+from django.db import transaction
+from decimal import Decimal
+import json
+
 @csrf_exempt
 @login_required
 def payment_success(request):
-    try:
-        data = json.loads(request.body)
-        payment_id = data.get("razorpay_payment_id")
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid request"}, status=400)
 
-        session_cart = request.session.get("cart", {})
-        if not session_cart:
-            return JsonResponse({"error": "Cart empty"}, status=400)
+    data = json.loads(request.body)
+    payment_id = data.get("razorpay_payment_id")
 
-        subtotal = Decimal("0.00")
+    session_cart = request.session.get("cart", {})
 
+    if not session_cart:
+        return JsonResponse({"error": "Cart is empty"}, status=400)
+
+    with transaction.atomic():
+
+        total = Decimal("0.00")
+
+        # Create Order
         order = Order.objects.create(
             user=request.user,
             payment_id=payment_id,
@@ -567,34 +627,43 @@ def payment_success(request):
             total_amount=0
         )
 
+        # Create OrderItems + Reduce Product Quantity
         for product_id, item in session_cart.items():
-            product = Product.objects.get(id=product_id)
-            price = Decimal(item["price"])
-            qty = item["qty"]
+            product = Product.objects.select_for_update().get(id=product_id)
 
-            subtotal += price * qty
+            qty = int(item["qty"])
+            price = Decimal(product.price)
+
+            if product.quantity < qty:
+                return JsonResponse({
+                    "error": f"Insufficient stock for {product.name}"
+                }, status=400)
+
+            # 🔻 Reduce stock
+            product.quantity -= qty
+            product.save()
+
+            total += price * qty
 
             OrderItem.objects.create(
                 order=order,
                 product=product,
-                quantity=qty,
-                price=price
+                price=price,
+                quantity=qty
             )
 
-        order.total_amount = subtotal
+        #  Update total
+        order.total_amount = total
         order.save()
 
-        # Clear cart
-        request.session["cart"] = {}
+        # CLEAR SESSION CART
+        del request.session["cart"]
         request.session.modified = True
 
-        send_invoice_email(order)
-
-        return JsonResponse({"order_id": order.id})
-
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
-
+    return JsonResponse({
+        "message": "Payment successful",
+        "order_id": order.id
+    })
 
 
 @login_required
@@ -652,22 +721,34 @@ def invoice_pdf(request, order_id):
 def order_success(request):
     order = Order.objects.filter(
         user=request.user,
-        status='paid'
-    ).order_by('-created_at').first()
+        payment_status="PAID",
+        is_completed=False
+    ).last()
 
     if not order:
-        messages.error(request, "No completed orders found.")
-        return redirect('web:index')
+        return redirect("home")
 
-    items = order.items.all()  # ✅ FIX HERE
+    with transaction.atomic():
+        for item in order.items.all():
+            product = item.product
 
-    for item in items:
-        item.subtotal = item.quantity * item.price
+            # 1️⃣ Reduce product stock
+            if product.quantity >= item.quantity:
+                product.quantity -= item.quantity
+                product.save()
+            else:
+                raise Exception("Insufficient stock")
 
-    return render(request, "web/order_success.html", {
-        "order": order,
-        "items": items
-    })
+        # 2️⃣ Remove cart items
+        CartItem.objects.filter(
+            cart__user=request.user
+        ).delete()
+
+        # 3️⃣ Mark order completed
+        order.is_completed = True
+        order.save()
+
+    return render(request, "web/order_success.html", {"order": order})
 
 # @login_required
 # def invoice(request, order_id):
