@@ -66,224 +66,66 @@
                                 <div class="col-span-3">Order</div>
                                 <div class="col-span-5">Products</div>
                                 <div class="col-span-2">Pricing</div>
+                                <div class="col-span-2">Date</div>
                                 <div class="col-span-2">Status</div>
                             </div>
 
                             <!-- Row 1 -->
+                             {% for order in orders %}
+                            {% for item in order.items.all %}
                             <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12840629</div>
 
+                                 <!-- Order Number -->
+                                <div class="col-span-3 text-sm text-zinc-700"> {{ order.invoice_number }}</div>
+
+                                <!-- Product Details -->
                                 <div class="col-span-5 flex items-center gap-4">
                                     <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/hair-oil.jpg" alt="Herbal Hair Oil"
+                                        <img src="{{ item.product.thumbnail.url }}" alt="{{ item.product.name }}"
                                             class="h-full w-full object-cover" />
                                     </div>
                                     <div>
-                                        <a href="product-detail.html"
+                                        <a href="{% url 'web:product_detail' item.product.slug %}"
                                             class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Herbal Hair Nourishing Oil
+                                            {{ item.product.name }}
                                         </a>
-                                        <div class="text-sm text-zinc-500">Hair Care • 200 ml</div>
+                                        <div class="text-sm text-zinc-500">{{ item.product.category }}  {{ item.product.size }}</div>
                                     </div>
                                 </div>
 
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 699</div>
-
+                                <div class="col-span-2 text-sm text-zinc-700">₹ {{ item.price }}</div>
+                                <div class="col-span-2 text-sm text-zinc-600">
+                                    {{ order.ordered_at|date:"d M Y" }}
+                                </div>
+                                <!-- Status -->
                                 <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold">
-                                        Completed
+                                    {% if order.status == 'paid' %}
+                                    <span class="inline-flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-semibold">
+                                        Paid
                                     </span>
+                                    {% elif order.status == 'shipped' %}
+                                        <span class="inline-flex rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">
+                                            Shipped
+                                        </span>
+                                    {% elif order.status == 'delivered' %}
+                                        <span class="inline-flex rounded-full bg-green-50 text-green-700 px-3 py-1 text-xs font-semibold">
+                                            Delivered
+                                        </span>
+                                    {% else %}
+                                        <span class="inline-flex rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
+                                            Pending
+                                        </span>
+                                    {% endif %}
                                 </div>
                             </div>
-
-                            <!-- Row 2 -->
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870127</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/skin-cleanser.jpg" alt="Herbal Skin Cleanser"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Ayurvedic Skin Cleansing Powder
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Skin Care • 100 g</div>
-                                    </div>
+                                {% endfor %}
+                            {% empty %}
+                                <div class="p-6 text-center text-zinc-500">
+                                    No orders found.
                                 </div>
+                            {% endfor %}
 
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 499</div>
 
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
-                                        Processing
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870127</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/skin-cleanser.jpg" alt="Herbal Skin Cleanser"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Ayurvedic Skin Cleansing Powder
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Skin Care • 100 g</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 499</div>
-
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
-                                        Processing
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870127</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/skin-cleanser.jpg" alt="Herbal Skin Cleanser"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Ayurvedic Skin Cleansing Powder
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Skin Care • 100 g</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 499</div>
-
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
-                                        Processing
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870127</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/skin-cleanser.jpg" alt="Herbal Skin Cleanser"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Ayurvedic Skin Cleansing Powder
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Skin Care • 100 g</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 499</div>
-
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
-                                        Processing
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870127</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/skin-cleanser.jpg" alt="Herbal Skin Cleanser"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Ayurvedic Skin Cleansing Powder
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Skin Care • 100 g</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 499</div>
-
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-semibold">
-                                        Processing
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- Row 3 -->
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870345</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/wellness-tablets.jpg" alt="Wellness Tablets"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Digestive Wellness Tablets
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Wellness • 60 tablets</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 899</div>
-
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">
-                                        Out for Delivery
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- Row 4 -->
-                            <div class="grid grid-cols-12 gap-3 px-6 py-5 border-t border-line items-center">
-                                <div class="col-span-3 text-sm text-zinc-700">#KM12870345</div>
-
-                                <div class="col-span-5 flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-xl border border-line bg-soft overflow-hidden">
-                                        <img src="images/products/wellness-tablets.jpg" alt="Wellness Tablets"
-                                            class="h-full w-full object-cover" />
-                                    </div>
-                                    <div>
-                                        <a href="product-detail.html"
-                                            class="font-semibold text-zinc-900 hover:text-brownMain transition">
-                                            Digestive Wellness Tablets
-                                        </a>
-                                        <div class="text-sm text-zinc-500">Wellness • 60 tablets</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-span-2 text-sm text-zinc-700">₹ 899</div>
-
-                                <div class="col-span-2">
-                                    <span
-                                        class="inline-flex items-center justify-center rounded-full bg-sky-50 text-sky-700 px-3 py-1 text-xs font-semibold">
-                                        Out for Delivery
-                                    </span>
-                                </div>
-                            </div>
 
 
                         </div>

@@ -286,7 +286,11 @@ def contactus(request):
 
 @login_required
 def orders(request):
-    return render(request, "web/orders.html")
+    orders = Order.objects.filter(user=request.user).prefetch_related('items__product')
+    return render(request, 'web/orders.html', {
+        'orders': orders
+    })
+
 
 @login_required
 def address(request):
