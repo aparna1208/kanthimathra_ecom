@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Successful • Kanthimandra</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brownMain: '#6B3F2A',
+            brownDark: '#4A2A1C',
+            line: '#E9E2DA',
+            soft: '#FAF8F5',
+          },
+          boxShadow: {
+            soft: '0 12px 35px rgba(0,0,0,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* subtle entrance */
+    @keyframes floatIn {
+      from { transform: translateY(18px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    .float-in { animation: floatIn .7s ease-out both; }
+
+    /* check draw */
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+    .check-path {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: draw 900ms ease-out 250ms forwards;
+    }
+
+    /* ring pop */
+    @keyframes pop {
+      0%   { transform: scale(.88); opacity: .65; }
+      60%  { transform: scale(1.02); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pop { animation: pop .55s ease-out both; }
+
+    /* progress bar (5s) */
+    @keyframes progress {
+      from { transform: scaleX(1); }
+      to   { transform: scaleX(0); }
+    }
+    .progress {
+      transform-origin: left center;
+      animation: progress 5s linear forwards;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-zinc-900">
+  <!-- Full width success page -->
+  <section class="min-h-screen w-full relative overflow-hidden flex items-center">
+    <!-- soft background -->
+    <div class="absolute inset-0 bg-soft"></div>
+    <div class="absolute inset-0 opacity-60"
+         style="background: radial-gradient(900px 500px at 20% 20%, rgba(107,63,42,.10), transparent 55%),
+                        radial-gradient(700px 420px at 80% 30%, rgba(107,63,42,.08), transparent 55%),
+                        radial-gradient(900px 600px at 50% 90%, rgba(0,0,0,.04), transparent 60%);"></div>
+
+    <div class="relative w-full px-6 sm:px-10 lg:px-16">
+      <div class="max-w-4xl mx-auto text-center float-in">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm text-brownMain font-medium shadow-soft">
+          <span class="h-2 w-2 rounded-full bg-brownMain"></span>
+          Payment confirmed • Order placed
+        </div>
+
+        <!-- Icon -->
+        <div class="mt-8 mx-auto w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border border-line shadow-soft grid place-items-center pop">
+          <svg width="54" height="54" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="#6B3F2A" stroke-width="2" opacity="0.25"></circle>
+            <path class="check-path" d="M8 12.5l2.5 2.5L16.5 9"
+                  stroke="#6B3F2A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="mt-8 text-4xl sm:text-6xl font-[500] leading-[1.05] tracking-[-0.02em]"
+            style="font-family:'Cormorant Garamond', serif;">
+          Order Successful
+        </h1>
+
+        <p class="mt-4 text-zinc-700 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          Thank you for ordering from Kanthimandra. We’ll begin processing your items, and you’ll receive updates shortly.
+        </p>
+
+        <!-- Order info -->
+        <div class="mt-8 grid gap-4 sm:grid-cols-3 text-left">
+          <div class="rounded-2xl border border-line bg-white p-5 shadow-soft">
+            <div class="text-xs text-zinc-500">Order ID</div>
+            <div id="orderId" class="mt-1 text-sm font-semibold text-zinc-900">#KM—</div>
+          </div>
+          <div class="rounded-2xl border border-line bg-white p-5 shadow-soft">
+            <div class="text-xs text-zinc-500">Estimated Dispatch</div>
+            <div class="mt-1 text-sm font-semibold text-zinc-900">24–48 hours</div>
+          </div>
+          <div class="rounded-2xl border border-line bg-white p-5 shadow-soft">
+            <div class="text-xs text-zinc-500">Support</div>
+            <div class="mt-1 text-sm font-semibold text-zinc-900">info@navodithahealthcare.com</div>
+          </div>
+        </div>
+
+        <!-- Redirect note + countdown -->
+        <div class="mt-8 text-sm text-zinc-600">
+          Redirecting to home in <span id="countdown" class="font-semibold text-brownMain">5</span> seconds…
+        </div>
+
+        <!-- Progress -->
+        <div class="mt-4 max-w-md mx-auto">
+          <div class="h-2 rounded-full bg-white border border-line overflow-hidden">
+            <div class="h-full bg-brownMain progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Generate a simple demo order id (replace with real order id if you have it)
+    const orderIdEl = document.getElementById('orderId');
+    const random = Math.floor(100000 + Math.random() * 900000);
+    orderIdEl.textContent = `#KM${random}`;
+
+    // Countdown + redirect in 5 seconds
+    const countdownEl = document.getElementById('countdown');
+    let t = 5;
+
+    const timer = setInterval(() => {
+      t -= 1;
+      countdownEl.textContent = String(t);
+      if (t <= 0) {
+        clearInterval(timer);
+        window.location.href = "index.html";
+      }
+    }, 1000);
+
+    // Hard redirect safety (exactly 5s)
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 5000);
+  </script>
+</body>
+</html>

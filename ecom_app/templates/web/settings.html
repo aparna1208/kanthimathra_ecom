@@ -1,0 +1,170 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!-- PAGE HEADER -->
+    <section class="relative border-b border-line min-h-[40vh] sm:min-h-[60vh] flex items-center">
+
+        <!-- Background image -->
+        <div class="absolute inset-0 bg-cover bg-center pagebanner"></div>
+
+        <!-- Overlay for readability -->
+        <div class="absolute inset-0 bg-white/80"></div>
+
+        <!-- Content -->
+        <div class="relative px-6 w-full">
+            <div class="max-w-8xl mx-auto py-12 sm:py-16">
+
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <div>
+                        <div class="text-sm sm:text-lg text-brownMain font-medium">
+                            My Account
+                        </div>
+
+                        <h1 class="mt-2 text-4xl sm:text-6xl font-[500] leading-[1.1] tracking-[-0.02em]"
+                            style="font-family:'Cormorant Garamond', serif;">
+                            Manage your orders and profile
+                        </h1>
+
+                        <p class="mt-3 text-zinc-700">
+                            View recent orders, track deliveries, update your details, and manage your saved addresses.
+                        </p>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ACCOUNT DASHBOARD -->
+    <section class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+            <div class="grid gap-8 lg:grid-cols-12 items-start">
+
+                <!-- SIDEBAR -->
+                <div class="lg:col-span-4">
+                    {% include 'web/sidebar.html' %}
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div class="lg:col-span-8">
+                    <!-- Stat cards -->
+
+                    <!-- SETTINGS SECTION (replace your current right-side content with this) -->
+                    <section class="mt-8">
+                        <h2 class="text-2xl sm:text-3xl font-[500] tracking-[-0.02em] text-zinc-900"
+                            style="font-family:'Cormorant Garamond', serif;">
+                            Account Setting
+                        </h2>
+
+                        <!-- Account info -->
+                        <div class="mt-6 space-y-4">
+                            <div class="grid gap-4 sm:grid-cols-2">
+                                <input type="text" placeholder="First name *"
+                                    class="w-full rounded-full bg-soft border border-line px-6 py-4 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-brownMain/20" />
+                                <input type="text" placeholder="Last name *"
+                                    class="w-full rounded-full bg-soft border border-line px-6 py-4 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-brownMain/20" />
+                            </div>
+
+                            <input type="email" placeholder="Email *"
+                                class="w-full rounded-full bg-soft border border-line px-6 py-4 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-brownMain/20" />
+                        </div>
+
+                        <!-- Change password -->
+                        <h3 class="mt-12 text-2xl sm:text-3xl font-[500] tracking-[-0.02em] text-zinc-900"
+                            style="font-family:'Cormorant Garamond', serif;">
+                            Change Password
+                        </h3>
+
+                        <div class="mt-6 space-y-4">
+
+                            <!-- Current password -->
+                            <div class="relative">
+                                <input id="currentPass" type="password" placeholder="Current password *"
+                                    class="w-full rounded-full bg-soft border border-line px-6 py-4 pr-14 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-brownMain/20" />
+                                <button type="button"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full grid place-items-center text-zinc-600 hover:text-brownMain transition"
+                                    data-toggle="currentPass" aria-label="Toggle password visibility">
+                                    <!-- eye -->
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- New password -->
+                            <div class="relative">
+                                <input id="newPass" type="password" placeholder="New password *"
+                                    class="w-full rounded-full bg-soft border border-line px-6 py-4 pr-14 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-brownMain/20" />
+                                <button type="button"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full grid place-items-center text-zinc-600 hover:text-brownMain transition"
+                                    data-toggle="newPass" aria-label="Toggle password visibility">
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Confirm password -->
+                            <div class="relative">
+                                <input id="confirmPass" type="password" placeholder="Confirm password *"
+                                    class="w-full rounded-full bg-soft border border-line px-6 py-4 pr-14 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-brownMain/20" />
+                                <button type="button"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full grid place-items-center text-zinc-600 hover:text-brownMain transition"
+                                    data-toggle="confirmPass" aria-label="Toggle password visibility">
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!-- Save -->
+                        <button
+                            class="mt-10 w-full rounded-full bg-brownMain text-white py-5 text-sm font-semibold hover:bg-brownDark transition">
+                            Save change
+                        </button>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brownMain: '#6B3F2A',
+                        brownDark: '#4A2A1C',
+                        line: '#E9E2DA',
+                        soft: '#FAF8F5',
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="{% static 'web/js/script.js' %}"></script>
+    <script src="{% static 'web/js/account.js' %}"></script>
+    <script src="{% static 'web/js/settings.js' %}"></script>
+
+{% endblock %}

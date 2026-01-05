@@ -1,0 +1,90 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white shadow-xl rounded-2xl p-8 max-w-lg w-full text-center">
+
+        <!-- Success Icon -->
+        <div class="flex justify-center mb-4">
+            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-green-100 text-green-600 text-3xl">
+                ✓
+            </div>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">
+            Order Placed Successfully!
+        </h1>
+
+        <!-- Message -->
+        <p class="text-gray-600 mb-6">
+            Your order has been placed successfully. We will process and deliver your order soon.
+        </p>
+
+
+        <section class="max-w-4xl mx-auto bg-white shadow-lg p-8 mt-10">
+
+    <div class="flex justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-bold">Invoice</h1>
+            <p>Invoice No: {{ order.invoice_number }}</p>
+            <p>Date: {{ order.created_at|date:"d M Y, h:i A" }}</p>
+            <p>Payment ID: {{ order.payment_id }}</p>
+        </div>
+        <div class="text-right">
+            <h2 class="font-semibold">{{ order.user.username }}</h2>
+            <p>{{ order.address.address_line_1 }}</p>
+            <p>{{ order.address.city }}, {{ order.address.state }}</p>
+        </div>
+    </div>
+
+    <table class="w-full border-collapse border">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="border p-2 text-left">Product</th>
+                <th class="border p-2">Qty</th>
+                <th class="border p-2">Price</th>
+                <th class="border p-2">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="border p-2">{{ item.product.name }}</td>
+                <td class="border p-2 text-center">{{ item.quantity }}</td>
+                <td class="border p-2 text-center">₹{{ item.price }}</td>
+                <td class="border p-2 text-center">₹{{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-right mt-6">
+        <h3 class="text-xl font-bold">Total: ₹{{ order.total_amount }}</h3>
+    </div>
+
+    <div class="mt-6 flex gap-4">
+        <a href="{% url 'web:invoice_pdf' order.id %}"
+           class="bg-brownMain text-white px-6 py-2 rounded">
+            Download PDF
+        </a>
+    </div>
+
+</section>
+        <!-- Buttons -->
+        <div class="flex flex-col gap-4">
+            <a href="{% url 'web:shop' %}"
+               class="w-full bg-brownMain text-white py-3 rounded-xl font-semibold hover:bg-brownDark transition">
+                Continue Shopping
+            </a>
+
+            <a href="{% url 'web:index' %}"
+               class="w-full bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold hover:bg-gray-300 transition">
+                Go to Home
+            </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

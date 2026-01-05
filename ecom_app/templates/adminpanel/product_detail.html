@@ -1,0 +1,252 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="{% static 'adminpanel/Images/icon.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'adminpanel/images/icon.png' %}" type="image/x-icon">
+    <title>KanthiMantra - Product Details </title>
+
+
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/font-awesome.css' %}">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="{% static 'adminpanel/css/linearicon.css' %}">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/themify.css' %}">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/feather-icon.css' %}">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/remixicon.css' %}">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/datatables.css' %}">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/scrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/animate.css' %}">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/bootstrap.css' %}">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/style.css' %}">
+
+       <style>
+        /* Read-only box style */
+        .view-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px 12px;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+        }
+
+        .view-box-textarea {
+            min-height: 100px;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+
+        {% include 'adminpanel/header.html' %}
+
+        <div class="page-body-wrapper">
+
+            {% include 'adminpanel/sidebar.html' %}
+
+            <div class="page-body">
+
+                <div class="container-fluid mt-5">
+                    <div class="row">
+                        <div class="col-sm-8 m-auto">
+
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <div class="card-header-2 mb-4">
+                                        <h5>View Product Information</h5>
+                                    </div>
+
+                                    <!-- PRODUCT NAME -->
+                                    <div class="mb-4 row">
+                                        <label class="col-sm-3 form-label-title">Product Name</label>
+                                        <div class="col-sm-9">
+                                            <div class="view-box">{{ product.name }}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CATEGORY -->
+                                    <div class="mb-4 row">
+                                        <label class="col-sm-3 form-label-title">Category</label>
+                                        <div class="col-sm-9">
+                                            <div class="view-box">{{ product.category.name }}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- BRAND -->
+                                    <div class="mb-4 row">
+                                        <label class="col-sm-3 form-label-title">Brand</label>
+                                        <div class="col-sm-9">
+                                            <div class="view-box">{{ product.brand }}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- DESCRIPTION -->
+                                    <div class="card-header-2">
+                                        <h5>Description</h5>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="view-box view-box-textarea">
+                                           {{ product.description }}
+                                        </div>
+                                    </div>
+
+                                    <!-- PRODUCT IMAGES -->
+                                    <div class="card-header-2">
+                                        <h5>Product Images</h5>
+                                    </div>
+
+                                    <div class="d-flex flex-wrap gap-3 mt-3">
+                                    {% if product.images.all %}
+                                        {% for img in product.images.all %}
+                                            <img src="{{ img.image.url }}"
+                                                width="90"
+                                                height="90"
+                                                class="border rounded shadow-sm"
+                                                style="object-fit:cover;">
+                                        {% endfor %}
+                                    {% else %}
+                                        <p class="text-muted">No images available</p>
+                                    {% endif %}
+                                </div>
+
+                                    <!-- THUMBNAIL -->
+                                    <div class="card-header-2 mt-4">
+                                        <h5>Thumbnail Image</h5>
+                                    </div>
+
+                                    {% if product.thumbnail %}
+                                    <img src="{{ product.thumbnail.url }}" width="120" height="120"
+                                        class="border rounded shadow-sm" style="object-fit:cover;">
+                                    {% else %}
+                                    <p>No thumbnail available</p>
+                                    {% endif %}
+                                    <!-- PRODUCT VIDEO -->
+                                    <div class="card-header-2 mt-4">
+                                        <h5>Product Video</h5>
+                                    </div>
+
+                                    {% if product.video %}
+                                    <video width="260" controls class="rounded shadow-sm border">
+                                        <source src="{{ product.video.url }}">
+                                    </video>
+                                    {% else %}
+                                    <p>No video available</p>
+                                    {% endif %}
+
+                                    <!-- PRICE -->
+                                    <div class="card-header-2 mt-4">
+                                        <h5> Price</h5>
+                                    </div>
+
+                                    <div class="mb-4 row">
+                                        <label class="col-sm-3 form-label-title">Price</label>
+                                        <div class="col-sm-9">
+                                            <div class="view-box">₹ {{ product.price }}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- INVENTORY -->
+                                    <div class="card-header-2">
+                                        <h5>Product Inventory</h5>
+                                    </div>
+
+                                    <div class="mb-4 row">
+                                        <label class="col-sm-3 form-label-title">Stock Status</label>
+                                        <div class="col-sm-9">
+                                            <div class="view-box"> {{ product.get_stock_status_display }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 row">
+                                        <label class="col-sm-3 form-label-title">Quantity</label>
+                                        <div class="col-sm-9">
+                                            <div class="view-box">{{ product.quantity }}</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% include 'adminpanel/footer.html' %}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- latest js -->
+    <script src="{% static 'adminpanel/js/jquery-3.6.0.min.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'adminpanel/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'adminpanel/js/icons/feather-icon/feather.min.js' %}"></script>
+    <script src="{% static 'adminpanel/js/icons/feather-icon/feather-icon.js' %}"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="{% static 'adminpanel/js/scrollbar/simplebar.js' %}"></script>
+    <script src="{% static 'adminpanel/js/scrollbar/custom.js' %}"></script>
+
+    <!-- Sidebar js -->
+    <script src="{% static 'adminpanel/js/config.js' %}"></script>
+
+    <!-- customizer js -->
+    <script src="{% static 'adminpanel/js/customizer.js' %}"></script>
+
+    <!-- Plugins js -->
+    <script src="{% static 'adminpanel/js/sidebar-menu.js' %}"></script>
+    <script src="{% static 'adminpanel/js/notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'adminpanel/js/notify/index.js' %}"></script>
+
+    <!-- Data table js -->
+    <script src="{% static 'adminpanel/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'adminpanel/js/custom-data-table.js' %}"></script>
+    <!-- sidebar effect -->
+    <script src="{% static 'adminpanel/js/sidebareffect.js' %}"></script>
+
+    <!-- Theme js -->
+    <script src="{% static 'adminpanel/js/script.js' %}"></script>
+
+</body>
+
+</html>

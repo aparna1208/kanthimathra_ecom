@@ -1,0 +1,782 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="font-body text-zinc-900 bg-white">
+
+
+    <!-- Header -->
+
+
+    <!-- Hero -->
+    <section class="relative">
+        <div class="absolute inset-0 soft-texture opacity-50"></div>
+
+        <div class="relative max-w-8xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+                <!-- Left content -->
+                <div class="reveal reveal-bottom">
+                    <div
+                        class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-xs font-semibold text-brownMain">
+                        <img src="{% static 'web/images/icon.png' %}" alt="" class="h-6 w-6 object-contain opacity-80" />
+                        Clinic-first care • Products • Heritage experience
+                    </div>
+
+                    <h1 class="mt-5 text-4xl sm:text-6xl leading-[1.08] tracking-[-0.02em] font-[600]"
+                        style="font-family:'Cormorant Garamond', serif;">
+                        Ayurveda, Practiced With Heritage — Designed For Modern Life And Wellness
+                    </h1>
+
+                    <p class="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed max-w-xl">
+                        Personalized consultation, carefully crafted formulations, and a calm heritage-led experience —
+                        built around consistency, safety, and long-term wellness.
+                    </p>
+
+                    <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                        <a href="clinic.html#book"
+                            class="inline-flex items-center justify-center rounded-xl bg-brownMain text-white px-5 py-3 font-medium hover:bg-brownDark transition">
+                            Book Consultation
+                        </a>
+                        <a href="products.html"
+                            class="inline-flex items-center justify-center rounded-xl border border-brownMain text-brownMain px-5 py-3 font-medium hover:bg-soft transition">
+                            Explore Products
+                        </a>
+                        <a href="heritage.html"
+                            class="inline-flex items-center justify-center rounded-xl border border-line text-zinc-800 px-5 py-3 font-medium hover:bg-soft transition">
+                            Heritage Experience
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right image -->
+                <div class="relative reveal reveal-bottom">
+                    <div class="rounded-3xl border border-line bg-soft overflow-hidden shadow-soft">
+                        <div class="aspect-[4/3]">
+                            <img src="{% static 'web/images/hero.jpg' %}" alt="Kanthimandra" class="h-full w-full object-cover" />
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-5 -left-5 hidden sm:block">
+                        <div class="rounded-2xl border border-line bg-white p-4 shadow-soft">
+                            <div class="text-xs font-semibold text-brownMain">Trusted approach</div>
+                            <div class="mt-1 font-semibold text-brownMain">Consult • Formulate • Follow-up</div>
+                            <div class="mt-2 text-xs text-zinc-600">No exaggerated claims. Just process.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="mt-10">
+                <div class="max-w-8xl mx-auto px-0">
+
+                    <!-- slider (mobile + tablet) -->
+                    <div class="relative overflow-hidden lg:hidden">
+                        <div class="flex gap-6 animate-badge-loop w-max">
+                            <!-- Set 1 -->
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/iso.webp' %}" class="object-contain" alt="ISO">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/gmp.webp' %}" class="object-contain" alt="GMP">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/natural.webp' %}" class="object-contain" alt="Natural">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/premium.webp' %}" class="object-contain" alt="Premium">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/pro.webp' %}" class="object-contain" alt="Professional">
+                                </div>
+                            </div>
+
+                            <!-- Set 2 (duplicate) -->
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/iso.webp' %}" class=" object-contain" alt="ISO">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/gmp.webp' %}" class="object-contain" alt="GMP">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/natural.webp' %}" class="object-contain" alt="Natural">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/premium.webp' %}" class="object-contain" alt="Premium">
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 w-28 sm:w-32 flex justify-center">
+                                <div
+                                    class="w-28 sm:w-32 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                    <img src="{% static 'web/images/pro.webp' %}" class="object-contain" alt="Professional">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- grid (desktop) -->
+                    <div class="hidden lg:grid lg:grid-cols-5 gap-4">
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="h-20 w-full rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                <img src="{% static 'web/images/iso.webp' %}" class=" object-contain" alt="">
+                            </div>
+                            <p class="mt-3 text-sm font-medium text-zinc-800">ISO Certified</p>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="h-20 w-full rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                <img src="{% static 'web/images/gmp.webp' %}" class="object-contain" alt="">
+                            </div>
+                            <p class="mt-3 text-sm font-medium text-zinc-800">GMP Certified</p>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="h-20 w-full rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                <img src="{% static 'web/images/natural.webp' %}" class="object-contain" alt="">
+                            </div>
+                            <p class="mt-3 text-sm font-medium text-zinc-800">100% Certified</p>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="h-20 w-full rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                <img src="{% static 'web/images/premium.webp' %}" class="object-contain" alt="">
+                            </div>
+                            <p class="mt-3 text-sm font-medium text-zinc-800">Premium Quality</p>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="h-20 w-full rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center">
+                                <img src="{% static 'web/images/pro.webp' %}" class="object-contain" alt="">
+                            </div>
+                            <p class="mt-3 text-sm font-medium text-zinc-800">Certified Professional</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About section -->
+    <section class="py-20 bg-white overflow-hidden border-t border-line">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+            <div class="grid gap-14 lg:grid-cols-2 items-center">
+
+                <div class="reveal reveal-left">
+                    <div class="relative">
+                        <img src="{% static 'web/images/about.jpg' %}" alt="Kanthimandra Ayurveda"
+                            class="w-full h-[420px] sm:h-[520px] object-cover rounded-3xl" />
+                        <div
+                            class="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/10 via-transparent to-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-right">
+                    <span class="inline-block text-sm font-medium tracking-wide text-brownMain">About
+                        Kanthimandra</span>
+
+                    <h2 class="mt-4 text-3xl sm:text-5xl font-[500] leading-[1.15] tracking-[-0.02em]"
+                        style="font-family:'Cormorant Garamond', serif;">
+                        Rooted in Ayurveda.<br class="hidden sm:block">
+                        Practiced with precision.
+                    </h2>
+
+                    <p class="mt-6 text-zinc-600 text-base sm:text-lg leading-relaxed">
+                        Kanthimandra is an Ayurvedic wellness practice built on classical principles,
+                        careful diagnosis, and personalised formulations. We combine time-tested
+                        Ayurvedic knowledge with a modern, methodical approach to care.
+                    </p>
+
+                    <div class="mt-8 space-y-6">
+                        <div>
+                            <h3 class="flex items-center gap-3 text-lg font-semibold text-zinc-900">
+                                <img src="{% static 'web/images/icon.png' %}" alt="" class="h-7 w-7 object-contain opacity-80" />
+                                Clinical Approach
+                            </h3>
+                            <p class="mt-2 text-zinc-600 leading-relaxed">
+                                Every consultation begins with a detailed assessment. Treatments and formulations are
+                                customised
+                                based on individual constitution and condition.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="flex items-center gap-3 text-lg font-semibold text-zinc-900">
+                                <img src="{% static 'web/images/icon.png' %}" alt="" class="h-7 w-7 object-contain opacity-80" />
+                                Heritage Experience
+                            </h3>
+                            <p class="mt-2 text-zinc-600 leading-relaxed">
+                                The Kanthimandra space is designed for quiet restoration — where heritage, environment,
+                                and care
+                                work together to support healing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-6 border-t border-zinc-200">
+                        <a href="about.html"
+                            class="inline-flex items-center gap-2 rounded-xl bg-brownMain px-6 py-3 text-sm font-medium text-white hover:bg-brownDark transition">
+                            View More
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-line">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal reveal-bottom">
+                <div>
+                    <span class="text-sm font-medium tracking-wide text-brownMain">
+                        Our Products
+                    </span>
+                    <h2 class="mt-2 text-3xl sm:text-5xl font-[500] tracking-[-0.02em]"
+                        style="font-family:'Cormorant Garamond', serif;">
+                        Ayurvedic formulations for daily wellness
+                    </h2>
+                </div>
+
+                <a href="{% url 'web:shop' %}" class="inline-flex items-center gap-2 rounded-xl bg-brownMain px-5 py-3 text-sm font-medium text-white
+                hover:bg-brownDark transition">
+                    View products
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 reveal reveal-bottom">
+                {% for product in products %}
+                <div class="group border border-line rounded-2xl overflow-hidden bg-white hover:shadow-soft transition">
+
+                    <!-- Image -->
+                    <div class="relative bg-soft">
+                        
+                        <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}"
+                            class="w-full aspect-square object-cover" />
+
+                        
+
+
+                        <!-- Top-right icons -->
+                        <div class="absolute top-3 right-3 flex flex-col gap-2">
+
+                            <!-- Wishlist -->
+                            <button class="h-9 w-9 rounded-full bg-white border border-line grid place-items-center
+               hover:bg-soft transition" aria-label="Add to wishlist">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brownMain"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M20.8 4.6c-1.8-1.7-4.7-1.5-6.3.4L12 7.6 9.5 5c-1.6-1.9-4.5-2.1-6.3-.4-2 1.9-2 5.2 0 7.1l8.8 8.5 8.8-8.5c2-1.9 2-5.2 0-7.1z" />
+                                </svg>
+                            </button>
+
+                            <!-- Cart icon -->
+                             <form method="POST" action="{% url 'web:add_to_cart' %}">
+                                {% csrf_token %}
+                                 <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <button class="h-9 w-9 rounded-full bg-white border border-line grid place-items-center
+                             hover:bg-soft transition" aria-label="Add to cart">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brownMain"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.7H9a2 2 0 0 1-2-1.6L5 3H2" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.5 21a1.5 1.5 0 1 0 0-3
+               1.5 1.5 0 0 0 0 3z
+               M17.5 21a1.5 1.5 0 1 0 0-3
+               1.5 1.5 0 0 0 0 3z" />
+                                </svg>
+                            </button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5">
+                        <h3 class="text-[20px] font-semibold text-zinc-900">
+                            {{product.name}}
+                        </h3>
+
+                        <p class="mt-1 text-[16px] text-zinc-700">
+                            ₹{{product.price}}
+                        </p>
+
+                        <!-- Actions -->
+                        <div class="mt-4 flex gap-2">
+
+
+                            <a href="{% url 'web:product_details_view' product.slug %}" class="flex-1 rounded-xl border border-brownMain text-brownMain py-2 text-sm text-center
+                hover:bg-soft transition">
+                                View More
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+                </div>
+
+
+                
+
+                   
+
+              
+
+
+                <!-- Repeat similarly for products 4,5,6 -->
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-line">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+            <!-- Section Header -->
+            <div class="max-w-2xl mb-10 reveal reveal-bottom">
+                <span class="text-sm font-medium tracking-wide text-brownMain">
+                    Inside Kanthimandra
+                </span>
+                <h2 class="mt-2 text-3xl sm:text-5xl font-[500] tracking-[-0.02em]"
+                    style="font-family:'Cormorant Garamond', serif;">
+                    A quiet look into our practice
+                </h2>
+            </div>
+
+            <!-- Video Wrapper -->
+            <div class="relative rounded-3xl overflow-hidden shadow-soft group reveal reveal-bottom">
+
+                <!-- Poster Image -->
+                <img src="{% static 'web/images/video.jpg' %}" alt="Kanthimandra video" class="w-full aspect-[16/9] object-cover" />
+
+                <!-- Dark overlay -->
+                <div class="absolute inset-0 bg-black/20 transition group-hover:bg-black/40"></div>
+
+                <!-- Play Button -->
+                <button id="playVideo" class="absolute inset-0 flex items-center justify-center"
+                    aria-label="Play video">
+
+                    <span class="h-20 w-20 rounded-full bg-white/90 grid place-items-center
+                     shadow-soft hover:scale-105 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brownMain ml-1" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </span>
+                </button>
+
+                <!-- Video -->
+                <video id="videoEl" class="absolute inset-0 w-full h-full object-cover hidden" controls playsinline
+                    preload="metadata">
+                    <source src="{% static 'web/images/video.mp4' %}" type="video/mp4">
+                </video>
+
+
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-white border-t border-line">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+            <div class="grid gap-14 lg:grid-cols-2 items-center">
+
+                <!-- LEFT: Image -->
+                <div class="reveal reveal-left">
+                    <div class="relative">
+                        <img src="{% static 'web/images/why.jpg' %}" alt="Why choose Kanthimandra"
+                            class="w-full h-[420px] sm:h-[520px] object-cover rounded-3xl" />
+                        <div
+                            class="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/10 via-transparent to-transparent">
+                        </div>
+
+                        <!-- small badge -->
+                        <div
+                            class="absolute bottom-4 left-4 bg-white/90 backdrop-blur rounded-2xl border border-line px-4 py-3">
+                            <div class="text-xs font-semibold text-brownMain">Built for long-term wellness</div>
+                            <div class="mt-1 text-sm text-zinc-700">Process-driven • Clear guidance • Consistent
+                                follow-up</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Content -->
+                <div class="reveal reveal-right">
+                    <span class="text-sm font-medium tracking-wide text-brownMain">
+                        Why Choose Us
+                    </span>
+
+                    <h2 class="mt-3 text-3xl sm:text-5xl font-[500] leading-[1.15] tracking-[-0.02em]"
+                        style="font-family:'Cormorant Garamond', serif;">
+                        Calm care, clear process with<br class="hidden sm:block">
+                        no shortcuts.
+                    </h2>
+
+                    <p class="mt-6 text-zinc-600 text-base sm:text-lg leading-relaxed">
+                        We focus on practical Ayurveda: structured consultation, personalised formulations,
+                        and consistent follow-up. No exaggerated promises — just method and measurable progress.
+                    </p>
+
+                    <!-- Cards -->
+                    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+
+                        <!-- Card 1 -->
+                        <div class="rounded-2xl border border-line bg-white p-5 hover:shadow-soft transition">
+                            <div class="flex items-start gap-3">
+                                <div class="h-9 w-9 rounded-xl bg-soft grid place-items-center">
+                                    <!-- Clinic / Diagnosis -->
+                                    <svg class="h-5 w-5 text-brownMain" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M2 12h20" />
+                                        <rect x="5" y="5" width="14" height="14" rx="2" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-semibold text-zinc-900">Clinic-first approach</h3>
+                                    <p class="mt-1 text-sm text-zinc-600 leading-relaxed">
+                                        Consultation comes first. Products and plans are aligned to the individual, not
+                                        trends.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="rounded-2xl border border-line bg-white p-5 hover:shadow-soft transition">
+                            <div class="flex items-start gap-3">
+                                <div class="h-9 w-9 rounded-xl bg-soft grid place-items-center">
+                                    <!-- Formulation -->
+                                    <svg class="h-5 w-5 text-brownMain" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10 2v6l-4 8a4 4 0 0 0 4 6h4a4 4 0 0 0 4-6l-4-8V2" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-semibold text-zinc-900">Thoughtful formulations</h3>
+                                    <p class="mt-1 text-sm text-zinc-600 leading-relaxed">
+                                        Carefully selected ingredients and traditional preparation methods with quality
+                                        checks.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="rounded-2xl border border-line bg-white p-5 hover:shadow-soft transition">
+                            <div class="flex items-start gap-3">
+                                <div class="h-9 w-9 rounded-xl bg-soft grid place-items-center">
+                                    <!-- Follow-up -->
+                                    <svg class="h-5 w-5 text-brownMain" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 12a9 9 0 1 0 3-6.7" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4v6h6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-semibold text-zinc-900">Follow-up discipline</h3>
+                                    <p class="mt-1 text-sm text-zinc-600 leading-relaxed">
+                                        Progress depends on consistency. We track, adjust, and guide step-by-step.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="rounded-2xl border border-line bg-white p-5 hover:shadow-soft transition">
+                            <div class="flex items-start gap-3">
+                                <div class="h-9 w-9 rounded-xl bg-soft grid place-items-center">
+                                    <!-- Heritage -->
+                                    <svg class="h-5 w-5 text-brownMain" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 21V8l6-4 6 4v13" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 21v-6h6v6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-semibold text-zinc-900">Heritage-led experience</h3>
+                                    <p class="mt-1 text-sm text-zinc-600 leading-relaxed">
+                                        A calm environment designed to support recovery, rest, and routine.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-line">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal reveal-left">
+                <div>
+                    <span class="text-sm font-medium tracking-wide text-brownMain">
+                        Gallery
+                    </span>
+                    <h2 class="mt-2 text-3xl sm:text-5xl font-[500] leading-[1.15] tracking-[-0.02em]"
+                        style="font-family:'Cormorant Garamond', serif;">
+                        Spaces, process & atmosphere
+                    </h2>
+                </div>
+
+                <a href="{% url 'web:gallery' %}"
+                    class="inline-flex items-center gap-2 rounded-xl border border-brownMain text-brownMain px-5 py-3 text-sm font-medium hover:bg-soft transition">
+                    View More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="mt-10 space-y-6 reveal reveal-bottom">
+
+                <!-- Top row (2 images) -->
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="group overflow-hidden rounded-3xl border border-line bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/g1.jpg' %}" alt="Clinic interior"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+
+                    <div class="group overflow-hidden rounded-3xl border border-line bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/g2.jpg' %}" alt="Treatment space"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom row (3 images) -->
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <div class="group overflow-hidden rounded-3xl border border-line bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/g3.jpg' %}" alt="Herbal preparation"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+
+                    <div class="group overflow-hidden rounded-3xl border border-line bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/g4.jpg' %}" alt="Consultation area"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+
+                    <div class="group overflow-hidden rounded-3xl border border-line bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/g5.jpg' %}" alt="Heritage environment"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-line">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 reveal reveal-bottom">
+                <div>
+                    <span class="text-sm font-medium tracking-wide text-brownMain">
+                        Journal
+                    </span>
+                    <h2 class="mt-2 text-3xl sm:text-5xl font-[500] leading-[1.15] tracking-[-0.02em]"
+                        style="font-family:'Cormorant Garamond', serif;">
+                        Notes on Ayurveda & daily wellness
+                    </h2>
+                </div>
+
+                <a href="{% url 'web:blog' %}" class="inline-flex items-center gap-2 rounded-xl bg-brownMain px-5 py-3 text-sm font-medium text-white
+                hover:bg-brownDark transition">
+                    View More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Cards -->
+            <div class="mt-12 grid gap-6 lg:grid-cols-3 reveal reveal-bottom">
+
+                <!-- Blog Card 1 -->
+                <article
+                    class="group rounded-3xl border border-line bg-white overflow-hidden hover:shadow-soft transition">
+                    <a href="blog-single.html" class="block bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/blog1.jpg' %}" alt="Blog cover"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </a>
+
+                    <div class="p-6">
+                        <div class="text-xs text-zinc-500">Dec 12, 2025 • 4 min read</div>
+                        <h3 class="mt-2 text-lg font-semibold text-zinc-900 leading-snug">
+                            Understanding your routine: food, sleep, and consistency
+                        </h3>
+
+                        <p class="mt-3 text-sm text-zinc-600 leading-relaxed">
+                            Small daily choices shape long-term wellness. Learn how consistent routines support balance
+                            and recovery.
+                        </p>
+
+                        <div class="mt-5">
+                            <a href="blog-single.html" class="inline-flex items-center gap-2 rounded-xl border border-brownMain text-brownMain px-4 py-2 text-sm font-medium
+                      hover:bg-soft transition">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article
+                    class="group rounded-3xl border border-line bg-white overflow-hidden hover:shadow-soft transition">
+                    <a href="{% url 'web:blog_single' %}" class="block bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/blog2.jpg' %}" alt="Blog cover"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </a>
+
+                    <div class="p-6">
+                        <div class="text-xs text-zinc-500">Dec 05, 2025 • 5 min read</div>
+                        <h3 class="mt-2 text-lg font-semibold text-zinc-900 leading-snug">
+                            What “clinic-first care” actually means (and why it matters)
+                        </h3>
+
+                        <p class="mt-3 text-sm text-zinc-600 leading-relaxed">
+                            Why diagnosis should come before products. A simple explanation of our approach and what you
+                            can expect.
+                        </p>
+
+                        <div class="mt-5">
+                            <a href="{% url 'web:blog_single' %}" class="inline-flex items-center gap-2 rounded-xl border border-brownMain text-brownMain px-4 py-2 text-sm font-medium
+                      hover:bg-soft transition">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article
+                    class="group rounded-3xl border border-line bg-white overflow-hidden hover:shadow-soft transition">
+                    <a href="blog-single.html" class="block bg-soft">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="{% static 'web/images/blog3.jpg' %}" alt="Blog cover"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                    </a>
+
+                    <div class="p-6">
+                        <div class="text-xs text-zinc-500">Nov 28, 2025 • 6 min read</div>
+                        <h3 class="mt-2 text-lg font-semibold text-zinc-900 leading-snug">
+                            Herbs, preparation, and quality: what to look for
+                        </h3>
+
+                        <p class="mt-3 text-sm text-zinc-600 leading-relaxed">
+                            Not all formulations are the same. Here’s how sourcing, method, and consistency affect
+                            outcomes.
+                        </p>
+
+                        <div class="mt-5">
+                            <a href="blog-single.html" class="inline-flex items-center gap-2 rounded-xl border border-brownMain text-brownMain px-4 py-2 text-sm font-medium
+                      hover:bg-soft transition">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 6l6 6-6 6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+</div>
+
+{% endblock %}
+

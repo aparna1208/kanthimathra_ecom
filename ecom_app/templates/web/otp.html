@@ -1,0 +1,157 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-xl mx-auto">
+
+            <!-- Heading -->
+            <div class="text-center mb-10">
+                <div class="text-sm sm:text-lg text-brownMain font-medium">Verify OTP</div>
+
+                <h1 class="mt-2 text-3xl sm:text-5xl font-[500] leading-tight tracking-[-0.02em]"
+                    style="font-family:'Cormorant Garamond', serif;">
+                    Enter the code we sent you
+                </h1>
+
+                <p class="mt-3 text-zinc-600 max-w-md mx-auto">
+                    We’ve sent a 6-digit OTP to <span class="font-medium text-zinc-900">{{ user.email }}</span>.
+                    Enter it below to continue.
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div class="rounded-3xl border border-line bg-white p-8 shadow-soft">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="mb-4 text-sm text-red-600">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form method="POST" id="otpForm" class="space-y-6">
+                {% csrf_token %}
+
+                    <!-- OTP Boxes -->
+                    <div>
+                        <label class="text-sm font-medium text-zinc-900 block mb-3">OTP Code</label>
+
+                        <div id="otpWrap" class="flex items-center justify-between gap-2 sm:gap-3">
+                            <input class="otpBox" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1">
+                            <input class="otpBox" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1">
+                            <input class="otpBox" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1">
+                            <input class="otpBox" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1">
+                            <input class="otpBox" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1">
+                            <input class="otpBox" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1">
+                        </div>
+
+                        <!-- Hidden full OTP -->
+                        <input type="hidden" id="otpValue" name="otp" />
+
+                        <div id="otpError" class="mt-3 text-sm text-red-600 hidden">
+                            Please enter the full 6-digit OTP.
+                        </div>
+                    </div>
+
+                    <!-- Verify -->
+                    <button id="verifyBtn" type="submit" class="w-full rounded-full bg-brownMain text-white py-4 text-sm font-semibold
+                 hover:bg-brownDark transition disabled:opacity-60 disabled:cursor-not-allowed">
+                        Verify OTP
+                    </button>
+
+                    <!-- Resend -->
+                    <div class="flex items-center justify-between text-sm text-zinc-600">
+                        <a href="{% url 'web:forgot_password' %}" class="text-brownMain font-medium hover:underline">
+                            Change email/phone
+                        </a>
+
+                        <button id="resendBtn" type="button"
+                            class="text-brownMain font-medium hover:underline disabled:text-zinc-400 disabled:no-underline"
+                            disabled>
+                            Resend OTP <span id="timer">(30s)</span>
+                        </button>
+                    </div>
+
+                </form>
+
+                <!-- Success state (hidden) -->
+                <div id="otpSuccess" class="hidden text-center py-8">
+                    <div
+                        class="mx-auto mb-4 h-14 w-14 rounded-full bg-emerald-50 grid place-items-center text-emerald-600">
+                        ✓
+                    </div>
+                    <h3 class="text-lg font-semibold text-zinc-900">Verified</h3>
+                    <p class="mt-2 text-sm text-zinc-600">
+                        OTP verified successfully. Redirecting…
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brownMain: '#6B3F2A',
+                        brownDark: '#4A2A1C',
+                        line: '#E9E2DA',
+                        soft: '#FAF8F5',
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="{% static 'web/js/script.js' %}"></script>
+    <script src="{% static 'web/js/login.js' %}"></script>
+
+
+
+<script>
+    const otpBoxes = document.querySelectorAll(".otpBox");
+    const otpInput = document.getElementById("otpValue");
+    const otpError = document.getElementById("otpError");
+
+    otpBoxes.forEach((box, index) => {
+        box.addEventListener("input", () => {
+            if (box.value && index < otpBoxes.length - 1) {
+                otpBoxes[index + 1].focus();
+            }
+        });
+
+        box.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !box.value && index > 0) {
+                otpBoxes[index - 1].focus();
+            }
+        });
+    });
+
+    document.getElementById("otpForm").addEventListener("submit", function (e) {
+        let otp = "";
+        otpBoxes.forEach(box => otp += box.value);
+
+        if (otp.length !== 6) {
+            e.preventDefault();
+            otpError.classList.remove("hidden");
+            return;
+        }
+
+        otpInput.value = otp;
+    });
+</script>
+
+{% endblock %}

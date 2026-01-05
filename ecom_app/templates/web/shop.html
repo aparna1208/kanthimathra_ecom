@@ -1,0 +1,402 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+
+ 
+
+    <!-- PAGE HEADER -->
+    <section class="relative border-b border-line min-h-[40vh] sm:min-h-[60vh] flex items-center">
+
+        <!-- Background image -->
+        <div class="absolute inset-0 bg-cover bg-center pagebanner">
+        </div>
+
+        <!-- Overlay for readability -->
+        <div class="absolute inset-0 bg-white/80"></div>
+
+        <!-- Content -->
+        <div class="relative px-6">
+            <div class="max-w-8xl mx-auto py-12 sm:py-16">
+
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <div>
+                        <div class="text-sm sm:text-lg text-brownMain font-medium">
+                            Our Shop
+                        </div>
+
+                        <h1 class="mt-2 text-4xl sm:text-6xl font-[500] leading-[1.1] tracking-[-0.02em]"
+                            style="font-family:'Cormorant Garamond', serif;">
+                            Ayurvedic products, made with care
+                        </h1>
+
+                        <p class="mt-3 text-zinc-700">
+                            Explore thoughtfully formulated Ayurvedic essentials, easily filtered by category,
+                            availability, and price for convenience.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SHOP LAYOUT -->
+    <section class="py-10 sm:py-14 bg-white">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-12 gap-8">
+
+                <!-- SIDEBAR (Desktop) + Offcanvas (Mobile/Tablet) -->
+                <aside class="lg:col-span-3">
+
+                    <!-- Mobile/Tablet Filter button (shows < lg) -->
+                    <button id="filterBtn"
+                        class="lg:hidden w-full mb-4 rounded-xl border border-line bg-white px-4 py-3 text-sm font-medium flex items-center justify-between">
+                        Filters
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-700" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M6 12h12M10 18h4" />
+                        </svg>
+                    </button>
+
+                    <!-- DESKTOP SIDEBAR (lg+) -->
+                    <div class="hidden lg:block rounded-3xl border border-line bg-white p-5">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-sm font-semibold text-zinc-900">Filters</h2>
+                            <a href="{% url 'web:shop' %}" class="text-xs text-zinc-500 hover:text-zinc-800"
+                             type="button">Clear</a>
+                        </div>
+
+                        <!-- Categories -->
+                        
+                    <form method="get">
+                        <div class="mt-6">
+                            <h3 class="text-sm font-semibold text-zinc-900">Categories</h3>
+                            <div class="mt-3 space-y-2 text-sm text-zinc-700">
+                                {% for cat in categories %}
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox"
+                                        name="category"
+                                        value="{{ cat.id }}"
+                                        {% if cat.id|stringformat:"s" in selected_categories %}checked{% endif %}
+                                        class="accent-brownMain" />
+                                    {{ cat.name }}
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="mt-6">
+                            <h3 class="text-sm font-semibold text-zinc-900">Availability</h3>
+                            <div class="mt-3 space-y-2 text-sm text-zinc-700">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox"
+                                    name="availability"
+                                    value="In Stock"
+                                    onchange="this.form.submit()"
+                                    {% if 'In Stock' in selected_availability %}checked{% endif %}
+                                    class="accent-brownMain" />
+                                In stock
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox"
+                                    name="availability"
+                                    value="Out of Stock"
+                                    onchange="this.form.submit()"
+                                    {% if 'Out of Stock' in selected_availability %}checked{% endif %}
+                                    class="accent-brownMain" />
+                                Out of stock
+                            </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="mt-6">
+                            <h3 class="text-sm font-semibold text-zinc-900">Price Range</h3>
+                            <div class="mt-3 grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-xs text-zinc-500">Min</label>
+                                    <input type="number"
+                                    name="min_price"
+                                    placeholder="0"
+                                    value="{{ min_price }}"
+                                    class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brownMain/20">
+
+                                </div>
+                                <div>
+                                    <label class="text-xs text-zinc-500">Max</label>
+                                    <input type="number"
+                                    name="max_price"
+                                    placeholder="2000"
+                                    value="{{ max_price }}"
+                                    class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brownMain/20">
+                                </div>
+                            </div>
+                            <button
+                                class="mt-4 w-full rounded-xl bg-brownMain text-white py-2.5 text-sm font-medium hover:bg-brownDark transition">
+                                Apply
+                            </button>
+                        </div>
+                        </form> 
+
+                        <!-- Sidebar Image -->
+                        <div class="mt-6">
+                            <div class="rounded-3xl overflow-hidden border border-line bg-soft">
+                                <div class="aspect-[3/4]">
+                                    <img src="{% static 'web/images/sidebar-banner.jpg' %}" alt="Ayurvedic Care"
+                                        class="w-full h-full object-cover" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- OFFCANVAS OVERLAY (Mobile/Tablet only) -->
+                    <div id="filterOverlay"
+                        class="lg:hidden fixed inset-0 z-[999] bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
+                    </div>
+
+                    <!-- OFFCANVAS PANEL (Mobile/Tablet only) -->
+                    <div id="filterDrawer" class="lg:hidden fixed inset-y-0 left-0 z-[1000] w-[86%] max-w-sm bg-white border-r border-line
+         -translate-x-full transition-transform duration-300 ease-out shadow-2xl">
+
+                        <!-- Drawer header -->
+                        <div class="h-16 px-4 border-b border-line flex items-center justify-between">
+                            <div class="text-sm font-semibold text-zinc-900">Filters</div>
+
+                            <!-- Top-right close icon -->
+                            <button id="filterClose"
+                                class="h-10 w-10 rounded-xl border border-line hover:bg-soft transition grid place-items-center"
+                                aria-label="Close filters" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-700"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="p-5 overflow-y-auto h-[calc(100vh-4rem)]">
+
+                            <!-- Categories -->
+                            <div>
+                                <h3 class="text-sm font-semibold text-zinc-900">Categories</h3>
+                                <div class="mt-3 space-y-2 text-sm text-zinc-700">
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> Skin Care</label>
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> Face Care</label>
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> Cosmetics</label>
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> Wellness</label>
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> Perfumes</label>
+                                </div>
+                            </div>
+
+                            <!-- Availability -->
+                            <div class="mt-6">
+                                <h3 class="text-sm font-semibold text-zinc-900">Availability</h3>
+                                <div class="mt-3 space-y-2 text-sm text-zinc-700">
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> In stock</label>
+                                    <label class="flex items-center gap-2"><input type="checkbox"
+                                            class="accent-brownMain" /> Out of stock</label>
+                                </div>
+                            </div>
+
+                            <!-- Price Range -->
+                            <div class="mt-6">
+                                <h3 class="text-sm font-semibold text-zinc-900">Price Range</h3>
+                                <div class="mt-3 grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs text-zinc-500">Min</label>
+                                        <input type="number" placeholder="0"
+                                            class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brownMain/20" />
+                                    </div>
+                                    <div>
+                                        <label class="text-xs text-zinc-500">Max</label>
+                                        <input type="number" placeholder="2000"
+                                            class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brownMain/20" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="mt-4 w-full rounded-xl bg-brownMain text-white py-2.5 text-sm font-medium hover:bg-brownDark transition">
+                                    Apply
+                                </button>
+                            </div>
+
+                            <!-- Sidebar Image -->
+                            <div class="mt-6">
+                                <div class="rounded-3xl overflow-hidden border border-line bg-soft">
+                                    <div class="aspect-[3/4]">
+                                        <img src="{% static 'web/images/sidebar-banner.jpg' %}" alt="Ayurvedic Care"
+                                            class="w-full h-full object-cover" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </aside>
+
+
+                <!-- MAIN -->
+                <main class="lg:col-span-9">
+
+                    <!-- Top bar: results + sort -->
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div class="text-sm text-zinc-600">
+                            Showing <span class="text-zinc-900 font-medium">{{ products|length }}</span> products
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm text-zinc-600" for="sortBy">Sort by</label>
+                            <select id="sortBy"
+                                class="rounded-xl border border-line bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brownMain/20">
+                                <option>Best selling</option>
+                                <option>Alphabetic</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products grid -->
+                    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {% for product in products %}
+                        <div class="group border border-line rounded-2xl overflow-hidden bg-white hover:shadow-soft transition">
+
+                            <!-- Image -->
+                            <div class="relative bg-soft">
+                                <img src="{{product.thumbnail.url}}" alt="{{ product.name }}"
+                                    class="w-full aspect-square object-cover" />
+
+
+                                <!-- Top-right icons -->
+                                <div class="absolute top-3 right-3 flex flex-col gap-2">
+
+                                    <!-- Wishlist -->
+                                    <button class="h-9 w-9 rounded-full bg-white border border-line grid place-items-center
+               hover:bg-soft transition" aria-label="Add to wishlist">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brownMain"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M20.8 4.6c-1.8-1.7-4.7-1.5-6.3.4L12 7.6 9.5 5c-1.6-1.9-4.5-2.1-6.3-.4-2 1.9-2 5.2 0 7.1l8.8 8.5 8.8-8.5c2-1.9 2-5.2 0-7.1z" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Cart icon -->
+                                    <button class="h-9 w-9 rounded-full bg-white border border-line grid place-items-center
+               hover:bg-soft transition" aria-label="Add to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brownMain"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.7H9a2 2 0 0 1-2-1.6L5 3H2" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.5 21a1.5 1.5 0 1 0 0-3
+               1.5 1.5 0 0 0 0 3z
+               M17.5 21a1.5 1.5 0 1 0 0-3
+               1.5 1.5 0 0 0 0 3z" />
+                                        </svg>
+                                    </button>
+
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-5">
+                                <h3 class="text-[20px] font-semibold text-zinc-900">
+                                   {{product.name}}
+                                </h3>
+
+                                <p class="mt-1 text-[16px] text-zinc-700">
+                                    ₹{{product.price}}
+                                </p>
+
+                                <!-- Actions -->
+                                <div class="mt-4 flex gap-2">
+
+                                
+                                    <a href="{% url 'web:product_details_view' product.slug %}" class="flex-1 rounded-xl border border-brownMain text-brownMain py-2 text-sm text-center hover:bg-soft transition">
+                                        View More
+                                    </a>
+                               
+                                </div>
+                            </div>
+
+                        </div>
+                        {% empty %}
+                            <p class="text-center text-zinc-700">No products available.</p>
+                        {% endfor %}
+
+
+                    </div>
+
+                    <!-- Pagination -->
+                     {% if products.paginator.num_pages > 1 %}
+                    <div class="mt-10 flex items-center justify-center gap-2">
+                        {% if products.has_previous %}
+                        <a href="?page={{ products.previous_page_number }}"
+                            class="h-10 px-4 rounded-xl border border-line bg-white grid place-items-center text-sm text-zinc-700 hover:bg-soft transition">
+                            Prev
+                        </a>
+                        {% else %}
+                            <span class="h-10 px-4 rounded-xl border border-line bg-zinc-100 text-zinc-400 grid place-items-center text-sm">
+                                Prev
+                            </span>
+                        {% endif %}
+
+                        {% for num in products.paginator.page_range %}
+                        {% if products.number == num %}
+                        <span class="h-10 w-10 rounded-xl bg-brownMain text-white grid place-items-center text-sm font-medium">{{num}}</span>
+                        {% else %}
+                        <a href="?page={{ num }}"
+                            class="h-10 w-10 rounded-xl border border-line bg-white grid place-items-center text-sm text-zinc-700 hover:bg-soft transition">{{num}}</a>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if products.has_next %}
+                        <a href="?page={{ products.next_page_number }}"
+                            class="h-10 px-4 rounded-xl border border-line bg-white grid place-items-center text-sm text-zinc-700 hover:bg-soft transition">
+                            Next
+                        </a>
+                        {% else %}
+                        <span class="h-10 px-4 rounded-xl border border-line bg-zinc-100 text-zinc-400 grid place-items-center text-sm">
+                             Next
+                        </span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                </main>
+            </div>
+        </div>
+    </section>
+
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brownMain: '#6B3F2A',
+                        brownDark: '#4A2A1C',
+                        line: '#E9E2DA',
+                        soft: '#FAF8F5',
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="{% static 'web/js/script.js' %}"></script>
+    <script src="{% static 'web/js/shop.js' %}"></script>
+
+{% endblock %}

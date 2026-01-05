@@ -1,0 +1,248 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+
+  
+    <!-- PAGE HEADER -->
+    <section class="relative border-b border-line min-h-[40vh] sm:min-h-[60vh] flex items-center">
+
+        <!-- Background image -->
+        <div class="absolute inset-0 bg-cover bg-center pagebanner"></div>
+
+        <!-- Overlay for readability -->
+        <div class="absolute inset-0 bg-white/80"></div>
+
+        <!-- Content -->
+        <div class="relative px-6 w-full">
+            <div class="max-w-8xl mx-auto py-12 sm:py-16">
+
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <div>
+                        <div class="text-sm sm:text-lg text-brownMain font-medium">
+                            My Account
+                        </div>
+
+                        <h1 class="mt-2 text-4xl sm:text-6xl font-[500] leading-[1.1] tracking-[-0.02em]"
+                            style="font-family:'Cormorant Garamond', serif;">
+                            Manage your orders and profile
+                        </h1>
+
+                        <p class="mt-3 text-zinc-700">
+                            View recent orders, track deliveries, update your details, and manage your saved addresses.
+                        </p>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ACCOUNT DASHBOARD -->
+    <section class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+            <div class="grid gap-8 lg:grid-cols-12 items-start">
+
+                <!-- SIDEBAR -->
+                <div class="lg:col-span-4">
+                    {% include 'web/sidebar.html' %}
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div class="lg:col-span-8">
+                    <!-- Stat cards -->
+
+                    <!-- ADDRESS SECTION (replace your current "All Purchased Orders" block with this) -->
+                    <section class="mt-8">
+                        <h2 class="text-2xl sm:text-3xl font-[500] tracking-[-0.02em] text-zinc-900"
+                            style="font-family:'Cormorant Garamond', serif;">
+                            My Address
+                        </h2>
+
+                        <div class="mt-5 space-y-5">
+
+                            <!-- Address Card 1 -->
+                            <div class="rounded-3xl border border-line bg-white">
+                                <div class="grid gap-6 lg:grid-cols-12 p-6 items-start">
+                                    <!-- Left -->
+                                    <div class="lg:col-span-8">
+                                        <div class="text-sm font-semibold text-zinc-900">Default</div>
+
+                                        <div class="mt-6">
+                                            <div class="text-sm font-semibold text-zinc-900">Clinic Address</div>
+                                            <p class="mt-2 text-sm text-zinc-700 leading-relaxed">
+                                                62/1238, B Paul Abrao Road,<br />
+                                                Ayyappankavu, North P.O,<br />
+                                                Ernakulam – 682018, Kerala, India
+                                            </p>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <div class="text-sm font-semibold text-zinc-900">Phone</div>
+                                            <p class="mt-2 text-sm text-zinc-700">
+                                                <a class="hover:text-brownMain" href="tel:+919995100269">+91 99951
+                                                    00269</a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right actions -->
+                                    <div class="lg:col-span-4 lg:justify-self-end w-full lg:w-auto">
+                                        <div class="flex lg:flex-col gap-3 lg:items-end">
+                                            <button
+                                                class="w-full lg:w-48 rounded-full bg-brownMain text-white py-3 text-sm font-medium hover:bg-brownDark transition"
+                                                data-edit-address data-title="Clinic Address"
+                                                data-address="62/1238, B Paul Abrao Road, Ayyappankavu, North P.O, Ernakulam – 682018, Kerala, India"
+                                                data-phone="+919995100269" data-default="true" type="button">
+                                                Edit
+                                            </button>
+
+                                            <button
+                                                class="w-full lg:w-48 rounded-full border border-line bg-white py-3 text-sm font-medium text-zinc-900 hover:bg-soft transition"
+                                                type="button">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address Card 2 -->
+                            <div class="rounded-3xl border border-line bg-white">
+                                <div class="grid gap-6 lg:grid-cols-12 p-6 items-start">
+                                    <!-- Left -->
+                                    <div class="lg:col-span-8">
+                                        <div class="text-sm font-semibold text-zinc-900">Other</div>
+
+                                        <div class="mt-6">
+                                            <div class="text-sm font-semibold text-zinc-900">Office Address</div>
+                                            <p class="mt-2 text-sm text-zinc-700 leading-relaxed">
+                                                JC Chamber, Building No. 60/44,<br />
+                                                Panampilly Nagar Road,<br />
+                                                Kochi – 692036, Ernakulam, Kerala, India
+                                            </p>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <div class="text-sm font-semibold text-zinc-900">Phone</div>
+                                            <p class="mt-2 text-sm text-zinc-700">
+                                                <a class="hover:text-brownMain" href="tel:+919995100269">+91 99951
+                                                    00269</a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right actions -->
+                                    <div class="lg:col-span-4 lg:justify-self-end w-full lg:w-auto">
+                                        <div class="flex lg:flex-col gap-3 lg:items-end">
+                                            <button
+                                                class="w-full lg:w-48 rounded-full bg-brownMain text-white py-3 text-sm font-medium hover:bg-brownDark transition"
+                                                data-edit-address data-title="Office Address"
+                                                data-address="JC Chamber, Building No. 60/44, Panampilly Nagar Road, Kochi – 692036, Ernakulam, Kerala, India"
+                                                data-phone="+919995100296" data-default="false" type="button">
+                                                Edit
+                                            </button>
+
+                                            <button
+                                                class="w-full lg:w-48 rounded-full border border-line bg-white py-3 text-sm font-medium text-zinc-900 hover:bg-soft transition"
+                                                type="button">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- EDIT MODAL (full screen overlay; sits above header) -->
+                    <div id="addrModal" class="fixed inset-0 z-[999] hidden" aria-hidden="true">
+
+                        <!-- overlay -->
+                        <div id="addrOverlay" class="absolute inset-0 bg-black/50"></div>
+
+                        <!-- modal box -->
+                        <div class="relative min-h-full flex items-center justify-center p-4">
+                            <div
+                                class="w-full max-w-2xl rounded-3xl bg-white border border-line shadow-soft overflow-hidden">
+                                <!-- header -->
+                                <div class="flex items-center justify-between px-6 py-5 border-b border-line">
+                                    <div class="text-2xl sm:text-3xl font-[500] tracking-[-0.02em] text-zinc-900"
+                                        style="font-family:'Cormorant Garamond', serif;">
+                                        Edit address
+                                    </div>
+
+                                    <button id="addrClose"
+                                        class="h-10 w-10 rounded-xl border border-line hover:bg-soft grid place-items-center"
+                                        aria-label="Close">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-700"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <!-- body -->
+                                <form id="addrForm" class="p-6 sm:p-8">
+                                    <div class="space-y-4">
+                                        <input id="addrTitle" type="text" placeholder="Title (e.g., Home / Office)"
+                                            class="w-full rounded-full border border-line bg-soft px-5 py-4 text-sm outline-none focus:ring-2 focus:ring-brownMain/20"
+                                            required />
+
+                                        <textarea id="addrText" rows="3" placeholder="Address *"
+                                            class="w-full rounded-3xl border border-line bg-soft px-5 py-4 text-sm outline-none focus:ring-2 focus:ring-brownMain/20"
+                                            required></textarea>
+
+                                        <input id="addrPhone" type="tel" placeholder="Phone *"
+                                            class="w-full rounded-full border border-line bg-soft px-5 py-4 text-sm outline-none focus:ring-2 focus:ring-brownMain/20"
+                                            required />
+
+                                        <label class="flex items-center gap-3 text-sm text-zinc-700 mt-2">
+                                            <input id="addrDefault" type="checkbox" class="h-4 w-4 accent-brownMain" />
+                                            Set as default address
+                                        </label>
+                                    </div>
+
+                                    <button type="submit"
+                                        class="mt-7 w-full rounded-full bg-brownMain text-white py-4 text-sm font-semibold hover:bg-brownDark transition">
+                                        Save
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brownMain: '#6B3F2A',
+                        brownDark: '#4A2A1C',
+                        line: '#E9E2DA',
+                        soft: '#FAF8F5',
+                    },
+                    boxShadow: {
+                        soft: '0 12px 35px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/account.js"></script>
+{% endblock %}

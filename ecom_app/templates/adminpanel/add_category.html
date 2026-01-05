@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <!-- meta data -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="{% static 'adminpanel/Images/icon.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'adminpanel/images/icon.png' %}" type="image/x-icon">
+    <title>KanthiMantra - Add Category</title>
+
+    <!-- Google font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="{% static 'adminpanel/css/linearicon.css' %}">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/font-awesome.css' %}">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/themify.css' %}">
+
+    <!--Dropzon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/dropzone.css' %}">
+
+    <!-- Feather icon css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/feather-icon.css' %}">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/remixicon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/dropzone.css' %}">
+
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/select2.min.css' %}">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/scrollbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/chartist.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/date-picker.css' %}">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/bootstrap.css' %}">
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendors/bootstrap-tagsinput.css' %}">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/style.css' %}">
+</head>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper start -->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+       {% include 'adminpanel/header.html' %}
+        <!-- Page Header Ends-->
+
+        <!-- Page Body start -->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+              {% include 'adminpanel/sidebar.html' %}
+            <!-- Page Sidebar Ends-->
+
+            <div class="page-body">
+
+                <!-- New Product Add Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-8 m-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <!-- <h5>Category Information</h5> -->
+                                                 <h5>{% if category %}Edit Category{% else %}Add Category{% endif %}</h5>
+
+                                            </div>
+
+                                        <!-- form -->
+
+                                        <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+
+                                            <div class="theme-form theme-form-2 mega-form">
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Category Name</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text" name="name"
+                                                             value="{{ category.name|default:'' }}"
+                                                            placeholder="Category Name" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">
+                                                        Category Image
+                                                    </label>
+                                                    <div class="form-group col-sm-9">
+                                                        <input type="file"
+                                                            name="image"
+                                                            class="form-control">
+
+                                                            {% if category and category.image %}
+                                                                <div class="mt-2">
+                                                                    <img src="{{ category.image.url }}" alt="Category Image" width="100">
+                                                                </div>
+                                                            {% endif %}
+                                                                                                                </div>
+                                                </div>
+
+                                                <!-- <div class="row align-items-center"> 
+                                                    <div class="col-sm-3 form-label-title">Select Category Icon</div>
+                                                    <div class="col-sm-9">
+                                                        <div class="dropdown icon-dropdown">
+                                                            <button class="btn dropdown-toggle" type="button"
+                                                                id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                                                                Select Icon
+                                                            </button>
+                                                            <ul class="dropdown-menu"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="../svg/1/vegetable.svg"
+                                                                            class="img-fluid" alt="">
+                                                                    </a>
+                                                                </li>
+
+
+                                                                <li>
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <img src="../svg/1/pet.svg"
+                                                                            class="img-fluid" alt="">
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>  -->
+                                            </div>
+                                        </div>
+                                        <div class="card-submit-button">
+                                            <button class="btn btn-animation ms-auto" type="submit">
+                                                {% if category %}Update{% else %}Submit{% endif %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Add End -->
+
+                <!-- footer Start -->
+               
+                        {% include 'adminpanel/footer.html' %}
+              
+                <!-- footer En -->
+            </div>
+            <!-- Container-fluid End -->
+        </div>
+        <!-- Page Body End -->
+    </div>
+    <!-- page-wrapper End -->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                        <button type="button" onclick="location.href = 'login.html';"
+                            class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- latest js -->
+    <script src="{% static 'adminpanel/js/jquery-3.6.0.min.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'adminpanel/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- feather icon js -->
+    <script src="{% static 'adminpanel/js/icons/feather-icon/feather.min.js' %}"></script>
+    <script src="{% static 'adminpanel/js/icons/feather-icon/feather-icon.js' %}"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="{% static 'adminpanel/js/scrollbar/simplebar.js' %}"></script>
+    <script src="{% static 'adminpanel/js/scrollbar/custom.js' %}"></script>
+
+    <!-- Sidebar js -->
+    <script src="{% static 'adminpanel/js/config.js' %}"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="{% static 'adminpanel/js/bootstrap-tagsinput.min.js' %}"></script>
+    <script src="{% static 'adminpanel/js/sidebar-menu.js' %}"></script>
+    <!-- customizer js -->
+    <script src="{% static 'adminpanel/js/customizer.js' %}"></script>
+
+    <!--Dropzon js -->
+    <script src="{% static 'adminpanel/js/dropzone/dropzone.js' %}"></script>
+    <script src="{% static 'adminpanel/js/dropzone/dropzone-script.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'adminpanel/js/notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'adminpanel/js/notify/index.js' %}"></script>
+
+    <!-- select2 js -->
+    <script src="{% static 'adminpanel/js/select2.min.js' %}"></script>
+    <script src="{% static 'adminpanel/js/select2-custom.js' %}"></script>
+
+    <!-- sidebar effect -->
+    <script src="{% static 'adminpanel/js/sidebareffect.js' %}"></script>
+
+    <!-- Theme js -->
+    <script src="{% static 'adminpanel/js/script.js' %}"></script>
+</body>
+
+</html>
